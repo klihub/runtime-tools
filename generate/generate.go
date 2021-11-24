@@ -1064,6 +1064,48 @@ func (g *Generator) AddPostStartHook(postStartHook rspec.Hook) {
 	g.Config.Hooks.Poststart = append(g.Config.Hooks.Poststart, postStartHook)
 }
 
+// ClearCreateRuntimeHooks clear g.Config.Hooks.CreateRuntime.
+func (g *Generator) ClearCreateRuntimeHooks() {
+	if g.Config == nil || g.Config.Hooks == nil {
+		return
+	}
+	g.Config.Hooks.CreateRuntime = []rspec.Hook{}
+}
+
+// AddCreateRuntimeHook add a prestart hook into g.Config.Hooks.Prestart.
+func (g *Generator) AddCreateRuntimeHook(createRuntimeHook rspec.Hook) {
+	g.initConfigHooks()
+	g.Config.Hooks.CreateRuntime = append(g.Config.Hooks.CreateRuntime, createRuntimeHook)
+}
+
+// ClearCreateContainerHooks clear g.Config.Hooks.CreateContainer.
+func (g *Generator) ClearCreateContainerHooks() {
+	if g.Config == nil || g.Config.Hooks == nil {
+		return
+	}
+	g.Config.Hooks.CreateContainer = []rspec.Hook{}
+}
+
+// AddCreateContainerHook adds a CreateContainer hook into g.Config.Hooks.CreateContainer.
+func (g *Generator) AddCreateContainerHook(createContainerHook rspec.Hook) {
+	g.initConfigHooks()
+	g.Config.Hooks.CreateContainer = append(g.Config.Hooks.CreateContainer, createContainerHook)
+}
+
+// ClearStartContainerHooks clear g.Config.Hooks.StartContainer.
+func (g *Generator) ClearStartContainerHooks() {
+	if g.Config == nil || g.Config.Hooks == nil {
+		return
+	}
+	g.Config.Hooks.StartContainer = []rspec.Hook{}
+}
+
+// AddStartContainerHook adds a StartContainer hook into g.Config.Hooks.StartContainer.
+func (g *Generator) AddStartContainerHook(startContainerHook rspec.Hook) {
+	g.initConfigHooks()
+	g.Config.Hooks.StartContainer = append(g.Config.Hooks.StartContainer, startContainerHook)
+}
+
 // AddMount adds a mount into g.Config.Mounts.
 func (g *Generator) AddMount(mnt rspec.Mount) {
 	g.initConfig()
